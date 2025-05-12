@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 from PageObjects.LoginPage import Login
+from PageObjects.DashboardPage import Dashboard
 import time
 
 class Test_001_Login:
@@ -55,5 +56,25 @@ class Test_001_Login:
         login.clickLogin()
 
         time.sleep(5)
+        assert driver.current_url == "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+        driver.quit()
+
+    
+    def test_logout(self):
+        driver = webdriver.Chrome()
+        driver.get(self.base_url)
+        login = Login(driver)
+
+        time.sleep(10)
+        login.setUsername(self.username)
+        login.setPassword(self.password)
+        login.clickLogin()
+
+        time.sleep(5)
+        assert driver.current_url == "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"
+
+        dashboard = Dashboard(driver)
+        dashboard.logout()
+        
         assert driver.current_url == "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
         driver.quit()

@@ -6,7 +6,6 @@ class Login:
         self.text_box_username_Name = "username"
         self.text_box_password_Name = "password"
         self.submit_button_Name = "orangehrm-login-button"
-        self.btn_login_xpath = '//*[@id="app"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button'
 
     def setUsername(self, username):
         self.driver.find_element(By.NAME, self.text_box_username_Name).clear()
